@@ -1,6 +1,6 @@
 // script.js
-let currentIndex = 0;
 const images = [
+    "1.jpg",
     "1727479530985HT@3YC6P7OZH$WY4GK39~6A.jpg",
     "202409280614524.jpg",
     "202409280646409.jpg",
@@ -67,10 +67,13 @@ const images = [
     "5db5076b004722f7d47c767ab7fa97ea.jpg"
 ];
 
-function showNextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    const imgElement = document.getElementById('carousel-image');
-    imgElement.src = "image/" + images[currentIndex];
-}
+const masonryContainer = document.querySelector('.masonry');
 
-setInterval(showNextImage, 3000); 
+images.forEach(imageName => {
+    const imgElement = document.createElement('img');
+    imgElement.src = "image/" + imageName;
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'masonry-item';
+    itemDiv.appendChild(imgElement);
+    masonryContainer.appendChild(itemDiv);
+});
